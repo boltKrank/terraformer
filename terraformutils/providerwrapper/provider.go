@@ -24,7 +24,7 @@ import (
 	"strings"
 	"time"
 
-	"github.com/GoogleCloudPlatform/terraformer/terraformutils/terraformerstring"
+	"github.com/boltKrank/terraformer/terraformutils/terraformerstring"
 
 	"github.com/zclconf/go-cty/cty"
 

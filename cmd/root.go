@@ -15,7 +15,7 @@
 package cmd
 
 import (
-	"github.com/GoogleCloudPlatform/terraformer/terraformutils"
+	"github.com/boltKrank/terraformer/terraformutils"
 	"github.com/spf13/cobra"
 )
 
@@ -38,7 +38,7 @@ func Execute() error {
 
 func providerImporterSubcommands() []func(options ImportOptions) *cobra.Command {
 	return []func(options ImportOptions) *cobra.Command{
-		// Major Cloud
+		/*// Major Cloud
 		newCmdGoogleImporter,
 		newCmdAwsImporter,
 		newCmdAzureImporter,
@@ -88,14 +88,14 @@ func providerImporterSubcommands() []func(options ImportOptions) *cobra.Command 
 		newCmdGmailfilterImporter,
 		newCmdVaultImporter,
 		newCmdOktaImporter,
-		newCmdAuth0Importer,
+		newCmdAuth0Importer, */
 	}
 }
 
 func providerGenerators() map[string]func() terraformutils.ProviderGenerator {
 	list := make(map[string]func() terraformutils.ProviderGenerator)
 	for _, providerGen := range []func() terraformutils.ProviderGenerator{
-		// Major Cloud
+		/* // Major Cloud
 		newGoogleProvider,
 		newAWSProvider,
 		newAzureProvider,
@@ -139,7 +139,7 @@ func providerGenerators() map[string]func() terraformutils.ProviderGenerator {
 		newGmailfilterProvider,
 		newVaultProvider,
 		newOktaProvider,
-		newAuth0Provider,
+		newAuth0Provider, */
 	} {
 		list[providerGen().GetName()] = providerGen
 	}

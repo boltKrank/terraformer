@@ -1,4 +1,4 @@
-module github.com/GoogleCloudPlatform/terraformer
+module github.com/boltKrank/terraformer
 
 go 1.24.0
 require (

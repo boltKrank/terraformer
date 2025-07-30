@@ -9,3 +9,5 @@ terraform.tfstate
 terraform.tfstate.backup
 init.tf
 vendor/
+host_init.sh
+host_init.sh

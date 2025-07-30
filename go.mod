@@ -2,6 +2,8 @@ module github.com/boltKrank/terraformer
 
 go 1.24.0
 
+replace github.com/boltKrank/terraformer => /Users/sanderson1/Infoblox/dev/terraformer
+
 require (
 	cloud.google.com/go v0.116.0 // indirect
 	cloud.google.com/go/storage v1.50.0

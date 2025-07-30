@@ -19,6 +19,7 @@ type ARecordGenerator struct {
 	terraformutils.Service
 }
 
+// InitResources is required by terraformutils.ServiceGenerator
 func (g *ARecordGenerator) InitResources() error {
 	host := os.Getenv("INFOBLOX_HOST")
 	user := os.Getenv("INFOBLOX_USERNAME")
@@ -55,8 +56,8 @@ func (g *ARecordGenerator) InitResources() error {
 				"ipv4addr": rec.IPv4Addr,
 				"view":     rec.View,
 			},
-			[]string{},
-			map[string]interface{}{},
+			[]string{},               // ignored keys
+			map[string]interface{}{}, // additional fields
 		))
 	}
 

@@ -39,7 +39,7 @@ func Execute() error {
 func providerImporterSubcommands() []func(options ImportOptions) *cobra.Command {
 	return []func(options ImportOptions) *cobra.Command{
 		// Major Cloud
-		newInfobloxImporter,
+		newCmdInfobloxImporter,
 		newCmdPagerDutyImporter,
 	}
 }

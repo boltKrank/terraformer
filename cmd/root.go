@@ -15,6 +15,7 @@
 package cmd
 
 import (
+	infoblox_terraformer "github.com/boltKrank/terraformer/providers/infoblox"
 	"github.com/boltKrank/terraformer/terraformutils"
 	"github.com/spf13/cobra"
 )
@@ -39,8 +40,8 @@ func Execute() error {
 func providerImporterSubcommands() []func(options ImportOptions) *cobra.Command {
 	return []func(options ImportOptions) *cobra.Command{
 		// Major Cloud
-		newCmdInfobloxImporter,
-		newCmdPagerDutyImporter,
+
+		// 		newCmdPagerDutyImporter,
 	}
 }
 
@@ -48,12 +49,16 @@ func providerGenerators() map[string]func() terraformutils.ProviderGenerator {
 	list := make(map[string]func() terraformutils.ProviderGenerator)
 	for _, providerGen := range []func() terraformutils.ProviderGenerator{
 		// Infoblox
-		newInfobloxProvider,
+		// 		newInfobloxProvider,
 
-		// For examples, testing
-		newPagerDutyProvider,
+		// For examples, testings
+		// 		newPagerDutyProvider,
 	} {
 		list[providerGen().GetName()] = providerGen
 	}
 	return list
+}
+
+func newInfobloxProvider() terraformutils.ProviderGenerator {
+	return &infoblox_terraformer.InfobloxProvider{}
 }

@@ -5,31 +5,34 @@ import (
 	"fmt"
 	"net/http"
 	"os"
+	"strconv"
 
 	"github.com/boltKrank/terraformer/terraformutils"
 )
 
 type ARecord struct {
-	Name         string            `json:"name"`
-	IPv4Addr     string            `json:"ipv4addr"`
-	View         string            `json:"view"`
-	TTL          *int              `json:"ttl,omitempty"`
-	Comment      string            `json:"comment,omitempty"`
-	ExtAttrs     map[string]string `json:"extattrs,omitempty"`
-	ExtAttrsJSON string            // compute JSON string if needed
+	Name     string                 `json:"name"`
+	IPv4Addr string                 `json:"ipv4addr"`
+	View     string                 `json:"view"`
+	TTL      *int                   `json:"ttl,omitempty"`
+	Comment  string                 `json:"comment,omitempty"`
+	ExtAttrs map[string]interface{} `json:"extattrs,omitempty"`
 }
 
 type ARecordGenerator struct {
 	terraformutils.Service
 }
 
-// InitResources is required by terraformutils.ServiceGenerator
 func (g *ARecordGenerator) InitResources() error {
 	host := os.Getenv("INFOBLOX_HOST")
 	user := os.Getenv("INFOBLOX_USERNAME")
 	pass := os.Getenv("INFOBLOX_PASSWORD")
 
-	url := fmt.Sprintf("https://%s/wapi/v2.13/record:a", host)
+	if host == "" || user == "" || pass == "" {
+		return fmt.Errorf("Missing required environment variables: INFOBLOX_HOST, INFOBLOX_USERNAME, INFOBLOX_PASSWORD")
+	}
+
+	url := fmt.Sprintf("https://%s/wapi/v2.10/record:a?_return_fields=name,ipv4addr,view,ttl,comment,extattrs", host)
 
 	req, _ := http.NewRequest("GET", url, nil)
 	req.SetBasicAuth(user, pass)
@@ -56,14 +59,18 @@ func (g *ARecordGenerator) InitResources() error {
 			"view":    rec.View,
 		}
 		if rec.TTL != nil {
-			attrs["ttl"] = fmt.Sprintf("%d", *rec.TTL)
+			attrs["ttl"] = strconv.Itoa(*rec.TTL)
 		}
 		if rec.Comment != "" {
 			attrs["comment"] = rec.Comment
 		}
-		// Optionally include ext_attrs if available
-		if len(rec.ExtAttrs) > 0 {
-			attrs["ext_attrs"] = rec.ExtAttrsJSON
+
+		for key, val := range rec.ExtAttrs {
+			if v, ok := val.(map[string]interface{}); ok {
+				if rawVal, ok := v["value"].(string); ok {
+					attrs[fmt.Sprintf("extattr_%s", key)] = rawVal
+				}
+			}
 		}
 
 		g.Resources = append(g.Resources, terraformutils.NewResource(

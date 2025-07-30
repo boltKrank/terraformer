@@ -21,14 +21,14 @@ import (
 	"strings"
 	"sync"
 
-	"github.com/GoogleCloudPlatform/terraformer/terraformutils/terraformerstring"
+	"github.com/boltKrank/terraformer/terraformutils/terraformerstring"
 
-	"github.com/GoogleCloudPlatform/terraformer/terraformutils/providerwrapper"
+	"github.com/boltKrank/terraformer/terraformutils/providerwrapper"
 
 	"github.com/spf13/pflag"
 
-	"github.com/GoogleCloudPlatform/terraformer/terraformutils"
-	"github.com/GoogleCloudPlatform/terraformer/terraformutils/terraformoutput"
+	"github.com/boltKrank/terraformer/terraformutils"
+	"github.com/boltKrank/terraformer/terraformutils/terraformoutput"
 
 	"github.com/spf13/cobra"
 )

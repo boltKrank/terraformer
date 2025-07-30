@@ -6,7 +6,7 @@ import (
 	"reflect"
 	"time"
 
-	"github.com/GoogleCloudPlatform/terraformer/terraformutils/providerwrapper"
+	"github.com/boltKrank/terraformer/terraformutils/providerwrapper"
 )
 
 type ProvidersMapping struct {

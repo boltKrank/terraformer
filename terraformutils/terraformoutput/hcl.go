@@ -18,8 +18,8 @@ import (
 	"os"
 	"strings"
 
-	"github.com/GoogleCloudPlatform/terraformer/terraformutils"
-	"github.com/GoogleCloudPlatform/terraformer/terraformutils/providerwrapper"
+	"github.com/boltKrank/terraformer/terraformutils"
+	"github.com/boltKrank/terraformer/terraformutils/providerwrapper"
 
 	"github.com/hashicorp/terraform/terraform"
 )

@@ -1,11 +1,15 @@
 package infoblox
 
 import (
-	"github.com/GoogleCloudPlatform/terraformer/terraformutils"
+	"github.com/boltKrank/terraformer/terraformutils"
 )
 
 type InfobloxProvider struct {
 	terraformutils.Provider
+}
+
+func NewProvider() terraformutils.ProviderGenerator {
+	return &InfobloxProvider{}
 }
 
 func (p *InfobloxProvider) Init(args []string) error {

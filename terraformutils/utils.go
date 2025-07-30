@@ -19,7 +19,7 @@ import (
 	"log"
 	"sync"
 
-	"github.com/GoogleCloudPlatform/terraformer/terraformutils/providerwrapper"
+	"github.com/boltKrank/terraformer/terraformutils/providerwrapper"
 
 	"github.com/hashicorp/terraform/terraform"
 )

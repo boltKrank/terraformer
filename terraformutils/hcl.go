@@ -207,15 +207,17 @@ func hclPrint(data interface{}, mapsObjects map[string]struct{}, sort bool) ([]b
 	}
 	// hack for support terraform 0.12
 	formatted = terraform12Adjustments(formatted, mapsObjects)
-	// hack for support terraform 0.13
-	formatted = terraform13Adjustments(formatted)
-	if err != nil {
-		log.Println("Invalid HCL follows:")
-		for i, line := range strings.Split(s, "\n") {
-			fmt.Printf("%4d|\t%s\n", i+1, line)
-		}
-		return nil, fmt.Errorf("error formatting HCL: %v", err)
-	}
+
+	/*
+		// hack for support terraform 0.13
+		formatted = terraform13Adjustments(formatted)
+		if err != nil {
+			log.Println("Invalid HCL follows:")
+			for i, line := range strings.Split(s, "\n") {
+				fmt.Printf("%4d|\t%s\n", i+1, line)
+			}
+			return nil, fmt.Errorf("error formatting HCL: %v", err)
+		} */
 
 	return formatted, nil
 }

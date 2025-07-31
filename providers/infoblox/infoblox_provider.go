@@ -59,42 +59,44 @@ func (p *InfobloxProvider) GetResourceConnections() map[string]map[string][]stri
 
 func (p *InfobloxProvider) GetSupportedService() map[string]terraformutils.ServiceGenerator {
 	return map[string]terraformutils.ServiceGenerator{
-		"infoblox_a_record": &ARecordGenerator{},
+		"infoblox_a_record": 		&ARecordGenerator{},
+		"infoblox_cname_record":    &CnameRecordGenerator{},
+		"infoblox_aaaa_record":     &AAAARecordGenerator{},
+		"infoblox_network_view":    &NetworkViewGenerator{},
 
 		/* TODO:
 		ResourcesMap: map[string]*schema.Resource{
-			"infoblox_network_view":           resourceNetworkView(),
-			"infoblox_ipv4_network_container": resourceIPv4NetworkContainer(),
-			"infoblox_ipv6_network_container": resourceIPv6NetworkContainer(),
-			"infoblox_ipv4_network":           resourceIPv4Network(),
-			"infoblox_ipv6_network":           resourceIPv6Network(),
-			"infoblox_ip_allocation":          resourceIPAllocation(),
-			"infoblox_ip_association":         resourceIpAssociationInit(),
-			"infoblox_a_record":               resourceARecord(),
-			"infoblox_aaaa_record":            resourceAAAARecord(),
-			"infoblox_cname_record":           resourceCNAMERecord(),
-			"infoblox_ptr_record":             resourcePTRRecord(),
-			"infoblox_zone_delegated":         resourceZoneDelegated(),
-			"infoblox_txt_record":             resourceTXTRecord(),
-			"infoblox_mx_record":              resourceMXRecord(),
-			"infoblox_srv_record":             resourceSRVRecord(),
-			"infoblox_dns_view":               resourceDNSView(),
-			"infoblox_zone_auth":              resourceZoneAuth(),
-			"infoblox_zone_forward":           resourceZoneForward(),
-			"infoblox_dtc_lbdn":               resourceDtcLbdnRecord(),
-			"infoblox_dtc_pool":               resourceDtcPool(),
-			"infoblox_dtc_server":             resourceDtcServer(),
-			"infoblox_ipv4_fixed_address":     resourceFixedRecord(),
-			"infoblox_alias_record":           resourceAliasRecord(),
-			"infoblox_ns_record":              resourceNSRecord(),
-			"infoblox_ipv4_range":             resourceRange(),
-			"infoblox_ipv4_range_template":    resourceRangeTemplate(),
-			"infoblox_ipv4_shared_network":    resourceIpv4SharedNetwork(),
+			
+			"infoblox_ipv4_network_container": &Ipv4NetworkContainerGenerator{},
+			"infoblox_ipv6_network_container": &Ipv6NetworkContainerGenerator{},
+			"infoblox_ipv4_network":           &Ipv4NetworkGenerator{},
+			"infoblox_ipv6_network":           &Ipv6NetworkGenerator{},
+			"infoblox_ip_allocation":          &IpAllocationGenerator{},
+			"infoblox_ip_association":         &IpAssociationGenerator{},
+			
+			
+			"infoblox_ptr_record":             &PtrRecordGenerator{},
+			"infoblox_zone_delegated":         &ZoneDelegatedGenerator{},
+			"infoblox_txt_record":             &TxtRecordGenerator{},
+			"infoblox_mx_record":              &MxRecordGenerator{},
+			"infoblox_srv_record":             &SrvRecordGenerator{},
+			"infoblox_dns_view":               &DnsViewGenerator{},
+			"infoblox_zone_auth":              &ZoneAuthGenerator{},
+			"infoblox_zone_forward":           &ZoneForwardGenerator{},
+			"infoblox_dtc_lbdn":               &DtcLbdnGenerator{},
+			"infoblox_dtc_pool":               &DtcPoolGenerator{},
+			"infoblox_dtc_server":             &DtcServerGenerator{},
+			"infoblox_ipv4_fixed_address":     &Ipv4FixedAddressGenerator{},
+			"infoblox_alias_record":           &AliasRecordGenerator{},
+			"infoblox_ns_record":              &NsRecordGenerator{},
+			"infoblox_ipv4_range":             &Ipv4RangeGenerator{},
+			"infoblox_ipv4_range_template":    &Ipv4RangeTemplateGenerator{},
+			"infoblox_ipv4_shared_network":    &Ipv4SharedNetworkGenerator{},
 
 			*/
 		},
 	}
-}
+}z
 
 func (p *InfobloxProvider) InitService(serviceName string, verbose bool) error {
 	// You could add logging here if verbose is true
@@ -112,7 +114,7 @@ func (p *InfobloxProvider) InitService(serviceName string, verbose bool) error {
 		"ibPassword":    p.ibPassword,
 		"ibWapiVersion": p.ibWapiVersion,
 	})
-
+z
 	return nil
 }
 
